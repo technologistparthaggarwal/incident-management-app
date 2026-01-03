@@ -15,7 +15,7 @@ conversation  : Composition of many {
     author    : type of managed:createdBy;
     message   : String;
 };
-createdAt     : Timestamp @cds.on.insert : $now;
+
 }
 
 /**

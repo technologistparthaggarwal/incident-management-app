@@ -37,9 +37,6 @@ mta_archives/
 build/ui-deployer/
 build/dist/
 env/
-<<<<<<< HEAD
 
 # auto generated wildcard
 .env
-=======
->>>>>>> 5b23867 (hi)

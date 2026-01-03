@@ -1,28 +1,33 @@
-using { sap.capire.incidents as my } from '../db/schema.cds';
+using { sap.capire.incidents as db } from '../db/schema.cds';
+
 /**
- * Service used by support personell, i.e. the incidents' 'processors'.
+ * Main FE service (List Report / Object Page)
  */
-service ProcessorService { 
-    entity Incidents as projection on my.Incidents;
 
-    @readonly
-    entity Customers as projection on my.Customers;
+
+service ProcessorService {
+  @odata.draft.enabled
+  entity Incidents as projection on db.Incidents;
+
+  @readonly entity Customers as projection on db.Customers;
+  @readonly entity Status    as projection on db.Status;
+  @readonly entity Urgency   as projection on db.Urgency;
 }
-
-annotate ProcessorService.Incidents with @odata.draft.enabled;  
 
 service ImportService @(path: 'import') {
-  entity Incidents as projection on my.Incidents;
-
-  /** Import plain-text CSV content and return a status message */
-  action importCSV(csv : String) returns String;
+  action importCSV(csv : LargeString) returns String;
 }
 
 
 /**
- * Service used by administrators to manage customers and incidents.
+ * Admin service (optional)
  */
 service AdminService {
-    entity Customers as projection on my.Customers;
-    entity Incidents as projection on my.Incidents;
-    }
+  entity Customers as projection on db.Customers;
+  entity Incidents as projection on db.Incidents;
+  entity Addresses as projection on db.Addresses;
+
+  @readonly entity Status  as projection on db.Status;
+  @readonly entity Urgency as projection on db.Urgency;
+}
+

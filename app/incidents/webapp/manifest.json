@@ -23,7 +23,12 @@
           "annotations": [],
           "odataVersion": "4.0"
         }
-      }
+      },
+      "importService": {
+    "uri": "/odata/v4/import/",
+    "type": "OData",
+    "settings": { "odataVersion": "4.0" }
+  }
     }
   },
   "sap.ui": {
@@ -72,6 +77,13 @@
           "earlyRequests": true
         }
       },
+       "import": {
+    "dataSource": "importService",
+    "settings": {
+      "synchronizationMode": "None",
+      "operationMode": "Server",
+      "autoExpandSelect": true
+    }},
       "@i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "uri": "i18n/i18n.properties"
@@ -114,6 +126,15 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "ResponsiveTable"
+                  },
+                  "actions": {
+                    "importfu": {
+                      "press": ".extension.ns.incidents.ext.controller.Import.onOpenImportDialog",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": false,
+                      "text": "Import1"
+                    }
                   }
                 }
               }
@@ -129,6 +150,15 @@
               "editableHeaderContent": false,
               "contextPath": "/Incidents"
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "ns.incidents.ext.controller.Import"
           }
         }
       }
