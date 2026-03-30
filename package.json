@@ -34,16 +34,13 @@
         "kind": "hana"
       },
       "[production]": {
-        "db": "hana",
-        "auth": "xsuaa"
+        "db": "hana"
       },
       "auth": {
         "[development]": {
           "kind": "dummy"
-        },
-        "[production]": {
-          "kind": "xsuaa"
         }
+       
       }
     }
   },
