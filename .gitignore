@@ -40,3 +40,5 @@ env/
 
 # auto generated wildcard
 .env
+# added by cds
+.cdsrc-private.json
